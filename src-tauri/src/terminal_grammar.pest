@@ -1,0 +1,15 @@
+space = @{ " "+ }
+
+number = @{ ASCII_DIGIT+ }
+
+string = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
+
+help = @{ "help" }
+
+params = @{ "-" ~ string }
+
+command = @{ "ls" | "pwd" | "mkdir" | "cd" | "rm" | "touch" | "mv" | "ps" | "run" | "kill" | "mem" | help}
+
+pipe = { "|" }
+
+line = { SOI ~ (command ~ (space ~ pipe ~ space ~ command)*)* ~ EOI }
