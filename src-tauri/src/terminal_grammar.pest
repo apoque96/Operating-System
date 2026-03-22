@@ -2,13 +2,15 @@ WHITESPACE = _{ " " }
 
 number = @{ ASCII_DIGIT+ }
 
-string = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
+char = { ASCII_ALPHANUMERIC | "." | "_" | "/" }
+
+string = @{ char+ }
 
 help = { "help" }
 
 params = @{ "-" ~ string }
 
-command = { "ls" | "pwd" | "mkdir" | "cd" | "rm" | "touch" | "mv" | "ps" | "run" | "kill" | "mem" | help}
+command = { "ls" | "pwd" | "mkdir" ~ string| "cd" ~ string | "rm" ~ string | "touch" ~ string | "mv" ~ string ~ string | "ps" | "run" | "kill" | "mem" | help}
 
 pipe = { "|" }
 
